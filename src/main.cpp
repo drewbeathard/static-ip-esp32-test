@@ -18,7 +18,7 @@ const char* ssid = "baskin home";
 const char* password = "NOAH1234";
 
 // Set your Static IP address
-IPAddress local_IP(192, 168, 1, 100);
+IPAddress local_IP(192, 168, 4, 50);
 // Set your Gateway IP address
 IPAddress gateway(192, 168, 4, 1);
 
@@ -29,6 +29,7 @@ IPAddress secondaryDNS(8, 8, 4, 4); //optional
 void setup() {
   Serial.begin(115200);
   Serial.println("Booting");
+  pinMode(2, OUTPUT);
   WiFi.mode(WIFI_STA);
   // Configures static IP address
   if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
@@ -89,4 +90,8 @@ void setup() {
 
 void loop() {
   ArduinoOTA.handle();
+  digitalWrite(2, HIGH);
+  delay(600);
+  digitalWrite(2, LOW);
+  delay(100);
 }
